@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row justify-content-between mt-5 mb-5">
+    <div class="row justify-content-between mt-5 mb-5 text-center">
       <div class="col-4">
         <h3>Team Members ({{ member_count }})</h3>
       </div>
