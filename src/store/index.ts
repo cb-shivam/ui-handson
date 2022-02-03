@@ -33,6 +33,9 @@ export default new Vuex.Store({
       }
     },
   },
+  getters: {
+    getMember: (state) => (memberId) => state.membersList.find((member) => member.id === memberId),
+  },
   actions: {},
   modules: {},
   plugins: [vuexPersist.plugin],

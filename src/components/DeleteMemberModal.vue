@@ -12,7 +12,8 @@
 
         <!--        Modal Body-->
         <div class="modal-body">
-          <p class="text-start">This member will not be able to access the site.</p>
+          <p class="text-start"><span class="fw-bold">{{ memberName }}</span> will not be able to
+            access the site.</p>
         </div>
 
         <!--        Modal Footer-->
@@ -34,6 +35,11 @@ export default {
     memberId: {
       type: Number,
       required: true,
+    },
+  },
+  computed: {
+    memberName() {
+      return this.$store.getters.getMember(this.memberId).name;
     },
   },
   methods: {
