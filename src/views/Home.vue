@@ -1,18 +1,61 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="container">
+    <div class="row justify-content-between mt-5 mb-5">
+      <div class="col-4">
+        <h3>Team Members ({{ member_count }})</h3>
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-primary" id="show-modal" @click="showModal = true">
+          + Invite Team Members
+        </button>
+      </div>
+    </div>
+    <MemberRow></MemberRow>
+    <MemberRow></MemberRow>
+    <!-- use the modal component, pass in the prop -->
+    <transition name="modal">
+      <InviteMemberModal v-if="showModal" @close="showModal = false">
+        <template v-slot:header>
+          <h3>custom header</h3>
+        </template>
+      </InviteMemberModal>
+    </transition>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script>
+import MemberRow from '@/components/MemberRow.vue';
+import InviteMemberModal from '@/components/InviteMemberModal.vue';
 
-@Component({
-  components: {
-    HelloWorld,
+export default {
+  name: 'Home',
+  data() {
+    return {
+      member_count: 5,
+      showModal: false,
+      show: true,
+    };
   },
-})
-export default class Home extends Vue {}
+  methods: {
+    inviteMember() {
+      alert('Inviting Member');
+    },
+  },
+  components: {
+    InviteMemberModal,
+    MemberRow,
+  },
+};
 </script>
+
+<style scoped>
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+</style>
