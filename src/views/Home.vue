@@ -10,8 +10,9 @@
         </button>
       </div>
     </div>
-    <MemberRow></MemberRow>
-    <MemberRow></MemberRow>
+    <MemberRow member-email="you@chargebee.com" member-name="Shivam"
+               member-role="admin"></MemberRow>
+
     <!-- use the modal component, pass in the prop -->
     <transition name="modal">
       <InviteMemberModal v-if="showModal" @close="showModal = false">

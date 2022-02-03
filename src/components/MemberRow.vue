@@ -5,7 +5,7 @@
            alt="..." width="70%">
     </div>
     <div class="col-5 border-light border-top border-bottom border-3">
-      <p class="mt-2">You<br>you@chargebee.com</p>
+      <p class="mt-2">{{ memberName }} ({{ memberRole }})<br>{{ memberEmail }}</p>
     </div>
 
     <div class="col-1 border border-light border-start-0 border-3">
@@ -19,5 +19,19 @@
 <script>
 export default {
   name: 'MemberRow',
+  props: {
+    memberName: {
+      type: String,
+      required: true,
+    },
+    memberRole: {
+      type: String,
+      required: true,
+    },
+    memberEmail: {
+      type: String,
+      required: true,
+    },
+  },
 };
 </script>
