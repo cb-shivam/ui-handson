@@ -9,9 +9,16 @@
     </div>
 
     <div class="col-1 border border-light border-start-0 border-3">
-      <div class="mt-3">
-        <img src="@/assets/three-dots-vertical.svg" alt="Bootstrap">
+      <div class="dropdown mt-4 text-center" v-if="!isYou">
+        <img src="@/assets/three-dots-vertical.svg" alt="Bootstrap"
+               class="dropdown-toggle" type="button" id="MemberDropdownButton"
+               data-bs-toggle="dropdown">
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" @click.prevent="removeMember">Remove</a></li>
+          <li><a class="dropdown-item" @click.prevent="editMemberRole">Edit Role</a></li>
+        </ul>
       </div>
+
     </div>
   </div>
 </template>
@@ -31,6 +38,22 @@ export default {
     memberEmail: {
       type: String,
       required: true,
+    },
+  },
+  computed: {
+    isYou() {
+      if (this.memberName === 'You') {
+        return true;
+      }
+      return false;
+    },
+  },
+  methods: {
+    removeMember() {
+      alert('Removing Member');
+    },
+    editMemberRole() {
+      alert('Editing Member');
     },
   },
 };
