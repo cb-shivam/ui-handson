@@ -27,6 +27,10 @@
 export default {
   name: 'MemberRow',
   props: {
+    memberId: {
+      type: Number,
+      required: true,
+    },
     memberName: {
       type: String,
       required: true,
@@ -50,11 +54,12 @@ export default {
   },
   methods: {
     removeMember() {
-      alert('Removing Member');
+      this.$emit('removeMemberEvent', this.memberId);
     },
     editMemberRole() {
-      alert('Editing Member');
+      this.$emit('editMemberRoleEvent', this.memberId);
     },
   },
+  emits: ['removeMemberEvent', 'editMemberRoleEvent'],
 };
 </script>

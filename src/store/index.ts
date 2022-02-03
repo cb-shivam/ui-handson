@@ -24,6 +24,14 @@ export default new Vuex.Store({
     addMember(state, member) {
       state.membersList.push(member);
     },
+    deleteMember(state, memberId) {
+      for (let i = 0; i < state.membersList.length; i += 1) {
+        if (state.membersList[i].id === memberId) {
+          state.membersList.splice(i, 1);
+          break;
+        }
+      }
+    },
   },
   actions: {},
   modules: {},
