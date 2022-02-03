@@ -63,7 +63,7 @@
 <!--        Modal Footer-->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" @click="inviteMember">Save changes</button>
         </div>
 
       </div>
@@ -84,6 +84,15 @@ export default {
   methods: {
     closeModal() {
       this.$emit('close');
+    },
+    inviteMember() {
+      this.$store.commit('addMember', {
+        id: Date.now(),
+        name: this.memberEmail,
+        email: this.memberEmail,
+        role: this.memberRole,
+      });
+      this.closeModal();
     },
   },
 };

@@ -10,8 +10,21 @@ const vuexPersist = new VuexPersist({
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    membersList: [
+      {
+        id: 1,
+        name: 'You',
+        email: 'shivam@chargebee.com',
+        role: 'Admin',
+      },
+    ],
+  },
+  mutations: {
+    addMember(state, member) {
+      state.membersList.push(member);
+    },
+  },
   actions: {},
   modules: {},
   plugins: [vuexPersist.plugin],

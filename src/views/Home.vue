@@ -10,8 +10,8 @@
         </button>
       </div>
     </div>
-    <MemberRow member-email="you@chargebee.com" member-name="Shivam"
-               member-role="admin"></MemberRow>
+    <MemberRow v-for='member in membersList' :key="member.id" v-bind:member-email="member.email"
+               v-bind:member-name="member.name" v-bind:member-role="member.role"></MemberRow>
 
     <!-- use the modal component, pass in the prop -->
     <transition name="modal">
@@ -37,6 +37,11 @@ export default {
   methods: {
     inviteMember() {
       alert('Inviting Member');
+    },
+  },
+  computed: {
+    membersList() {
+      return this.$store.state.membersList;
     },
   },
   components: {
