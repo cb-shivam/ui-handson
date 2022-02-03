@@ -15,9 +15,6 @@
     <!-- use the modal component, pass in the prop -->
     <transition name="modal">
       <InviteMemberModal v-if="showModal" @close="showModal = false">
-        <template v-slot:header>
-          <h3>custom header</h3>
-        </template>
       </InviteMemberModal>
     </transition>
   </div>
