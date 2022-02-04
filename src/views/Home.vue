@@ -84,7 +84,7 @@ export default class Home extends Vue {
   transition: opacity 0.5s ease;
 }
 
-.modal-enter-from,
+.modal-enter,
 .modal-leave-to {
   opacity: 0;
 }
