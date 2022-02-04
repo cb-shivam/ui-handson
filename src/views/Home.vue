@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-between mt-5 mb-5 text-center">
       <div class="col-4">
-        <h3>Team Members ({{ member_count }})</h3>
+        <h3>Team Members ({{ membersCount }})</h3>
       </div>
       <div class="col-4">
         <button type="button" class="btn btn-primary" id="show-modal"
@@ -51,9 +51,6 @@ import { Member } from '@/types';
   },
 })
 export default class Home extends Vue {
-  // eslint-disable-next-line camelcase
-  member_count = 5;
-
   showInviteMemberModal = false;
 
   selectedMemberId = -1;
@@ -74,6 +71,10 @@ export default class Home extends Vue {
 
   get membersList() :Member[] {
     return this.$store.state.membersList;
+  }
+
+  get membersCount() :number {
+    return this.$store.getters.getMemberCount;
   }
 }
 </script>

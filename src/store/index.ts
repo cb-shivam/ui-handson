@@ -46,6 +46,7 @@ export default new Vuex.Store({
     getMember: (state) => (memberId: number) => (
       state.membersList.find((member) => member.id === memberId)
     ),
+    getMemberCount: (state) => state.membersList.length,
   },
   actions: {},
   modules: {},
