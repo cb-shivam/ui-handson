@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersist from 'vuex-persist';
+import { Member } from '@/types';
 
 const vuexPersist = new VuexPersist({
   key: 'workshop',
@@ -18,13 +19,13 @@ export default new Vuex.Store({
         email: 'shivam@chargebee.com',
         role: 'Admin',
       },
-    ],
+    ] as Member[],
   },
   mutations: {
-    addMember(state, member) {
+    addMember(state, member: Member): void {
       state.membersList.push(member);
     },
-    deleteMember(state, memberId) {
+    deleteMember(state, memberId: number): void {
       for (let i = 0; i < state.membersList.length; i += 1) {
         if (state.membersList[i].id === memberId) {
           state.membersList.splice(i, 1);
@@ -32,7 +33,7 @@ export default new Vuex.Store({
         }
       }
     },
-    editMemberRole(state, member) {
+    editMemberRole(state, member: Member): void {
       for (let i = 0; i < state.membersList.length; i += 1) {
         if (state.membersList[i].id === member.id) {
           state.membersList[i].role = member.role;
@@ -42,8 +43,9 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    // eslint-disable-next-line max-len
-    getMember: (state) => (memberId: number) => state.membersList.find((member) => member.id === memberId),
+    getMember: (state) => (memberId: number) => (
+      state.membersList.find((member) => member.id === memberId)
+    ),
   },
   actions: {},
   modules: {},
