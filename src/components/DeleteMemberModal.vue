@@ -72,7 +72,7 @@ export default class DeleteMemberModal extends Vue {
 }
 
 .modal-container {
-  margin: 0px auto;
+  margin: 0 auto;
   padding: 20px 30px;
   background-color: #fff;
   border-radius: 2px;

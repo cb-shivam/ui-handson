@@ -60,7 +60,7 @@
 
         </div>
 
-<!--        Modal Footer-->
+        <!--        Modal Footer-->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
           <button type="button" class="btn btn-primary" @click="inviteMember">Save changes</button>
@@ -79,13 +79,13 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class InviteMemberModal extends Vue {
   memberEmail = '';
 
-  memberRole = '';
+  memberRole = 'Tech Support';
 
-  closeModal() :void {
+  closeModal(): void {
     this.$emit('close');
   }
 
-  inviteMember() :void {
+  inviteMember(): void {
     this.$store.commit('addMember', {
       id: Date.now(),
       name: this.memberEmail,
@@ -116,7 +116,7 @@ export default class InviteMemberModal extends Vue {
 }
 
 .modal-container {
-  margin: 0px auto;
+  margin: 0 auto;
   padding: 20px 30px;
   background-color: #fff;
   border-radius: 2px;
