@@ -64,41 +64,36 @@
 
 </template>
 
-<script>
-export default {
-  name: 'EditMemberModal',
-  data() {
-    return {
-      memberRole: '',
-    };
-  },
-  props: {
-    memberId: {
-      type: Number,
-      required: true,
-    },
-  },
-  computed: {
-    memberEmail() {
-      return this.$store.getters.getMember(this.memberId).email;
-    },
-  },
-  methods: {
-    closeModal() {
-      this.$emit('close');
-    },
-    editMemberRole() {
-      this.$store.commit('editMemberRole', {
-        id: this.memberId,
-        role: this.memberRole,
-      });
-      this.closeModal();
-    },
-  },
-  mounted() {
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+@Component
+export default class EditMemberModal extends Vue {
+  memberRole = '';
+
+  @Prop({ required: true })
+  memberId!: number;
+
+  get memberEmail() :string {
+    return this.$store.getters.getMember(this.memberId).email;
+  }
+
+  closeModal() :void {
+    this.$emit('close');
+  }
+
+  editMemberRole() :void {
+    this.$store.commit('editMemberRole', {
+      id: this.memberId,
+      role: this.memberRole,
+    });
+    this.closeModal();
+  }
+
+  mounted() :void {
     this.memberRole = this.$store.getters.getMember(this.memberId).role;
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
@@ -120,7 +115,7 @@ export default {
 }
 
 .modal-container {
-  margin: 0px auto;
+  margin: 0 auto;
   padding: 20px 30px;
   background-color: #fff;
   border-radius: 2px;

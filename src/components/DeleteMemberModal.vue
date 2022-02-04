@@ -28,30 +28,29 @@
 
 </template>
 
-<script>
-export default {
-  name: 'DeleteMemberModal',
-  props: {
-    memberId: {
-      type: Number,
-      required: true,
-    },
-  },
-  computed: {
-    memberName() {
-      return this.$store.getters.getMember(this.memberId).name;
-    },
-  },
-  methods: {
-    closeModal() {
-      this.$emit('close');
-    },
-    removeMember() {
-      this.$store.commit('deleteMember', this.memberId);
-      this.closeModal();
-    },
-  },
-};
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+@Component
+export default class DeleteMemberModal extends Vue {
+  @Prop({ required: true })
+  memberId !:number;
+
+  // Computed Property
+  get memberName() :string {
+    return this.$store.getters.getMember(this.memberId).name;
+  }
+
+  // Methods
+  closeModal() :void {
+    this.$emit('close');
+  }
+
+  removeMember() :void {
+    this.$store.commit('deleteMember', this.memberId);
+    this.closeModal();
+  }
+}
 </script>
 
 <style scoped>

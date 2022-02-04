@@ -42,7 +42,8 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    getMember: (state) => (memberId) => state.membersList.find((member) => member.id === memberId),
+    // eslint-disable-next-line max-len
+    getMember: (state) => (memberId: number) => state.membersList.find((member) => member.id === memberId),
   },
   actions: {},
   modules: {},

@@ -72,30 +72,29 @@
 
 </template>
 
-<script>
-export default {
-  name: 'InviteMemberModal',
-  data() {
-    return {
-      memberEmail: '',
-      memberRole: '',
-    };
-  },
-  methods: {
-    closeModal() {
-      this.$emit('close');
-    },
-    inviteMember() {
-      this.$store.commit('addMember', {
-        id: Date.now(),
-        name: this.memberEmail,
-        email: this.memberEmail,
-        role: this.memberRole,
-      });
-      this.closeModal();
-    },
-  },
-};
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class InviteMemberModal extends Vue {
+  memberEmail = '';
+
+  memberRole = '';
+
+  closeModal() :void {
+    this.$emit('close');
+  }
+
+  inviteMember() :void {
+    this.$store.commit('addMember', {
+      id: Date.now(),
+      name: this.memberEmail,
+      email: this.memberEmail,
+      role: this.memberRole,
+    });
+    this.closeModal();
+  }
+}
 </script>
 
 <style scoped>

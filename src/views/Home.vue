@@ -34,45 +34,48 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 import MemberRow from '@/components/MemberRow.vue';
 import InviteMemberModal from '@/components/InviteMemberModal.vue';
 import DeleteMemberModal from '@/components/DeleteMemberModal.vue';
 import EditMemberModal from '@/components/EditMemberModal.vue';
+import { Member } from '@/types';
 
-export default {
-  name: 'Home',
-  data() {
-    return {
-      member_count: 5,
-      showInviteMemberModal: false,
-      selectedMemberId: null,
-      showDeleteMemberModal: false,
-      showEditMemberModal: false,
-    };
-  },
-  methods: {
-    renderDeleteMemberModal(memberId) {
-      this.selectedMemberId = memberId;
-      this.showDeleteMemberModal = true;
-    },
-    renderEditMemberModal(memberId) {
-      this.selectedMemberId = memberId;
-      this.showEditMemberModal = true;
-    },
-  },
-  computed: {
-    membersList() {
-      return this.$store.state.membersList;
-    },
-  },
+@Component({
   components: {
-    EditMemberModal,
-    InviteMemberModal,
     MemberRow,
+    InviteMemberModal,
     DeleteMemberModal,
+    EditMemberModal,
   },
-};
+})
+export default class Home extends Vue {
+  // eslint-disable-next-line camelcase
+  member_count = 5;
+
+  showInviteMemberModal = false;
+
+  selectedMemberId = -1;
+
+  showDeleteMemberModal = false;
+
+  showEditMemberModal = false;
+
+  renderDeleteMemberModal(memberId :number) :void {
+    this.selectedMemberId = memberId;
+    this.showDeleteMemberModal = true;
+  }
+
+  renderEditMemberModal(memberId :number) :void {
+    this.selectedMemberId = memberId;
+    this.showEditMemberModal = true;
+  }
+
+  get membersList() :Member[] {
+    return this.$store.state.membersList;
+  }
+}
 </script>
 
 <style scoped>
