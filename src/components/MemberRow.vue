@@ -15,7 +15,7 @@
                data-bs-toggle="dropdown">
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" @click.prevent="removeMember">Remove</a></li>
-          <li><a class="dropdown-item" @click.prevent="editMemberRole">Edit Role</a></li>
+          <li><a class="dropdown-item" @click.prevent="editMember">Edit Role</a></li>
         </ul>
       </div>
 
@@ -56,10 +56,10 @@ export default {
     removeMember() {
       this.$emit('removeMemberEvent', this.memberId);
     },
-    editMemberRole() {
-      this.$emit('editMemberRoleEvent', this.memberId);
+    editMember() {
+      this.$emit('editMemberEvent', this.memberId);
     },
   },
-  emits: ['removeMemberEvent', 'editMemberRoleEvent'],
+  emits: ['removeMemberEvent', 'editMemberEvent'],
 };
 </script>

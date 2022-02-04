@@ -32,6 +32,14 @@ export default new Vuex.Store({
         }
       }
     },
+    editMemberRole(state, member) {
+      for (let i = 0; i < state.membersList.length; i += 1) {
+        if (state.membersList[i].id === member.id) {
+          state.membersList[i].role = member.role;
+          break;
+        }
+      }
+    },
   },
   getters: {
     getMember: (state) => (memberId) => state.membersList.find((member) => member.id === memberId),

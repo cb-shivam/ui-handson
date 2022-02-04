@@ -14,7 +14,8 @@
     <MemberRow v-for='member in membersList' :key="member.id" v-bind:member-email="member.email"
                v-bind:member-name="member.name" v-bind:member-role="member.role"
                v-bind:member-id="member.id"
-               @removeMemberEvent="renderDeleteMemberModal($event)"></MemberRow>
+               @removeMemberEvent="renderDeleteMemberModal($event)"
+               @editMemberEvent="renderEditMemberModal($event)"></MemberRow>
 
     <!-- use the modal component, pass in the prop -->
     <transition name="modal">
@@ -25,6 +26,10 @@
                          v-bind:member-id="selectedMemberId">
       </DeleteMemberModal>
 
+      <EditMemberModal v-if="showEditMemberModal" @close="showEditMemberModal = false"
+                         v-bind:member-id="selectedMemberId">
+      </EditMemberModal>
+
     </transition>
   </div>
 </template>
@@ -33,6 +38,7 @@
 import MemberRow from '@/components/MemberRow.vue';
 import InviteMemberModal from '@/components/InviteMemberModal.vue';
 import DeleteMemberModal from '@/components/DeleteMemberModal.vue';
+import EditMemberModal from '@/components/EditMemberModal.vue';
 
 export default {
   name: 'Home',
@@ -42,12 +48,17 @@ export default {
       showInviteMemberModal: false,
       selectedMemberId: null,
       showDeleteMemberModal: false,
+      showEditMemberModal: false,
     };
   },
   methods: {
     renderDeleteMemberModal(memberId) {
       this.selectedMemberId = memberId;
       this.showDeleteMemberModal = true;
+    },
+    renderEditMemberModal(memberId) {
+      this.selectedMemberId = memberId;
+      this.showEditMemberModal = true;
     },
   },
   computed: {
@@ -56,6 +67,7 @@ export default {
     },
   },
   components: {
+    EditMemberModal,
     InviteMemberModal,
     MemberRow,
     DeleteMemberModal,
