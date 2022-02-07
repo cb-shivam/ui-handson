@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+
     <div class="row justify-content-between mt-5 mb-5 text-center">
       <div class="col-4">
         <h3>Team Members ({{ membersCount }})</h3>
@@ -11,6 +12,7 @@
         </button>
       </div>
     </div>
+
     <MemberRow v-for='member in membersList' :key="member.id" v-bind:member-email="member.email"
                v-bind:member-name="member.name" v-bind:member-role="member.role"
                v-bind:member-id="member.id"
@@ -19,6 +21,7 @@
 
     <!-- use the modal component, pass in the prop -->
     <transition name="modal">
+
       <InviteMemberModal v-if="showInviteMemberModal" @close="showInviteMemberModal = false">
       </InviteMemberModal>
 
@@ -31,6 +34,7 @@
       </EditMemberModal>
 
     </transition>
+
   </div>
 </template>
 
